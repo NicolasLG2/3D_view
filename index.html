@@ -43,6 +43,50 @@
       background-color: #f5f5f5;
     }
 
+    .legend {
+      position: fixed;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.96);
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      min-width: 240px;
+      z-index: 1000;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .legend-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .legend-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .legend-color {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      margin-right: 12px;
+      border: 1px solid rgba(0,0,0,0.15);
+      flex-shrink: 0;
+    }
+
+    .legend-text {
+      font-size: 14px;
+      color: #222;
+    }
+
     .switch-container {
       height: 80px;
       display: flex;
@@ -85,6 +129,7 @@
       src="model.glb"
       camera-controls
       auto-rotate
+      camera-orbit="-35deg 75deg auto"
       shadow-intensity="1"
       exposure="1"
       alt="Vue 3D">
@@ -96,10 +141,35 @@
       src="model2.glb"
       camera-controls
       auto-rotate
+      camera-orbit="-35deg 75deg auto"
       shadow-intensity="1"
       exposure="1"
       alt="Vue 3D explosée">
     </model-viewer>
+  </div>
+
+  <div class="legend">
+    <div class="legend-title">Légende des composants</div>
+
+    <div class="legend-item">
+      <div class="legend-color" style="background:#5E68E2FF;"></div>
+      <div class="legend-text">Coque avant</div>
+    </div>
+
+    <div class="legend-item">
+      <div class="legend-color" style="background:#A6BFE2FF;"></div>
+      <div class="legend-text">Coque arrière</div>
+    </div>
+
+    <div class="legend-item">
+      <div class="legend-color" style="background:#171AA1FF;"></div>
+      <div class="legend-text">Chapeau</div>
+    </div>
+
+    <div class="legend-item">
+      <div class="legend-color" style="background:#107400FF;"></div>
+      <div class="legend-text">Carte électronique PCB</div>
+    </div>
   </div>
 
   <div class="switch-container">
