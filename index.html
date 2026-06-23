@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Visualiseur 3D</title>
+
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
   <style>
@@ -10,11 +11,25 @@
       margin: 0;
       background: #f5f5f5;
       font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .header {
+      height: 80px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header img {
+      height: 50px;
+      width: auto;
     }
 
     .viewer {
       width: 100vw;
-      height: calc(100vh - 80px);
+      height: calc(100vh - 160px);
       display: none;
     }
 
@@ -25,6 +40,7 @@
     model-viewer {
       width: 100%;
       height: 100%;
+      background-color: #f5f5f5;
     }
 
     .switch-container {
@@ -34,6 +50,7 @@
       align-items: center;
       background: #ffffff;
       gap: 12px;
+      border-top: 1px solid #e5e5e5;
     }
 
     button {
@@ -42,17 +59,26 @@
       border-radius: 999px;
       cursor: pointer;
       font-size: 16px;
-      background: #ddd;
+      background: #dcdcdc;
+      transition: all 0.2s ease;
     }
 
     button.active {
       background: #111;
       color: white;
     }
+
+    button:hover {
+      opacity: 0.9;
+    }
   </style>
 </head>
 
 <body>
+
+  <div class="header">
+    <img src="image.png" alt="Logo">
+  </div>
 
   <div id="vue3d" class="viewer active">
     <model-viewer
@@ -77,14 +103,21 @@
   </div>
 
   <div class="switch-container">
-    <button id="btnVue3d" class="active" onclick="showViewer('vue3d')">Vue 3D</button>
-    <button id="btnExplose" onclick="showViewer('vue3dExplose')">Vue 3D explosée</button>
+    <button id="btnVue3d" class="active" onclick="showViewer('vue3d')">
+      Vue 3D
+    </button>
+
+    <button id="btnExplose" onclick="showViewer('vue3dExplose')">
+      Vue 3D explosée
+    </button>
   </div>
 
   <script>
     function showViewer(view) {
+
       document.getElementById('vue3d').classList.remove('active');
       document.getElementById('vue3dExplose').classList.remove('active');
+
       document.getElementById('btnVue3d').classList.remove('active');
       document.getElementById('btnExplose').classList.remove('active');
 
