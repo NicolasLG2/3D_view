@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Visualiseur 3D</title>
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -11,53 +12,91 @@
       font-family: Arial, sans-serif;
     }
 
-    .container {
-      display: flex;
+    .viewer {
       width: 100vw;
-      height: 100vh;
-      gap: 10px;
-      padding: 10px;
-      box-sizing: border-box;
+      height: calc(100vh - 80px);
+      display: none;
     }
 
-    .viewer {
-      flex: 1;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
+    .viewer.active {
+      display: block;
     }
 
     model-viewer {
       width: 100%;
       height: 100%;
     }
+
+    .switch-container {
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      gap: 12px;
+    }
+
+    button {
+      padding: 14px 24px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 16px;
+      background: #ddd;
+    }
+
+    button.active {
+      background: #111;
+      color: white;
+    }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <div class="viewer">
+  <div id="vue3d" class="viewer active">
     <model-viewer
       src="model.glb"
       camera-controls
       auto-rotate
       shadow-intensity="1"
       exposure="1"
-      alt="Modèle 3D 1">
+      alt="Vue 3D">
     </model-viewer>
   </div>
 
-  <div class="viewer">
+  <div id="vue3dExplose" class="viewer">
     <model-viewer
       src="model2.glb"
       camera-controls
       auto-rotate
       shadow-intensity="1"
       exposure="1"
-      alt="Modèle 3D 2">
+      alt="Vue 3D explosée">
     </model-viewer>
   </div>
-</div>
+
+  <div class="switch-container">
+    <button id="btnVue3d" class="active" onclick="showViewer('vue3d')">Vue 3D</button>
+    <button id="btnExplose" onclick="showViewer('vue3dExplose')">Vue 3D explosée</button>
+  </div>
+
+  <script>
+    function showViewer(view) {
+      document.getElementById('vue3d').classList.remove('active');
+      document.getElementById('vue3dExplose').classList.remove('active');
+      document.getElementById('btnVue3d').classList.remove('active');
+      document.getElementById('btnExplose').classList.remove('active');
+
+      if (view === 'vue3d') {
+        document.getElementById('vue3d').classList.add('active');
+        document.getElementById('btnVue3d').classList.add('active');
+      } else {
+        document.getElementById('vue3dExplose').classList.add('active');
+        document.getElementById('btnExplose').classList.add('active');
+      }
+    }
+  </script>
 
 </body>
 </html>
